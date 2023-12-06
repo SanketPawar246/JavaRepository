@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="icon" href="../static/images/icon.png" type="image/png">
+    <style>
+        .chocolate-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .chocolate-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chocolate-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .chocolate-card-body {
+            padding: 20px;
+        }
+
+        .chocolate-card-title {
+            font-size: 1.5rem;
+            color: #343a40;
+        }
+
+        .chocolate-card-text {
+            color: #6c757d;
+        }
+
+        body {
+            padding-top: 60px; /* Adjust body padding to accommodate fixed navbar */
+            background-color: #f8f9fa; /* Light background color */
+        }
+
+        .navbar {
+            background-color: #ff6b6b; /* Red navbar background color */
+            border-bottom: 3px solid #721c24; /* Darker border at the bottom */
+        }
+
+        .navbar-brand img {
+            width: auto;
+            height: 60px; /* Adjust the height of the logo */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff; /* Color of the navbar toggler icon */
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* Color of the navigation links */
+            margin-right: 15px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ccc; /* Color of the navigation links on hover */
+        }
+
+        .jumbotron {
+            background: url('https://example.com/cake-background.jpg') center/cover;
+            color: #fff;
+            padding: 100px 25px;
+            text-align: center;
+            margin-bottom: 10px;
+            background-color: yellow;
+            color: red;
+            font-family: bold;
+        }
+
+        .history-section {
+            background-color: gray;
+            padding: 50px 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .history-section h2 {
+            color: #ff6b6b; /* Red heading color */
+        }
+    </style>
+    <title>MOMS CAKE STUDIO</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" class="d-inline-block align-top" alt=""/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/shop}" href="#">Shop</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">Logout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/cart}" href="#">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <span class="nav-link" th:text="${cartCount}">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to MOMS Cake Studio!</h1>
+    <p class="lead">Indulge in the sweetness of our delicious cakes crafted with love and passion.</p>
+</div>
+
+<div class="container history-section">
+    <h2>Our Sweet Journey</h2>
+    <p>Founded in 2020, our mom cake studio has been serving delightful treats to cake enthusiasts worldwide. We believe in
+        creating not just cakes but memories that last a lifetime. Our commitment to quality and innovation has made
+        us a trusted name in the world of confectionery.</p>
+
+    <p>From classic favorites to unique creations, each cake is a masterpiece, handcrafted by our skilled bakers. We
+        source the finest ingredients to ensure that every bite is a moment of pure joy. Join us in celebrating life's
+        sweetest moments with our delectable cakes!</p>
+</div>
+
+<div class="chocolate-section">
+    <div class="container">
+        <h2 class="text-center mb-4">Explore Our Chocolate Varieties</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="chocolate-card">
+                    <div class="chocolate-card-body">
+                        <h5 class="chocolate-card-title">Dark Chocolate</h5>
+                        <p class="chocolate-card-text">Indulge in the rich and intense flavors of our finest dark chocolate. Perfect for true chocolate enthusiasts.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="chocolate-card">
+                    <div class="chocolate-card-body">
+                        <h5 class="chocolate-card-title">Milk Chocolate</h5>
+                        <p class="chocolate-card-text">Experience the creamy goodness of our classic milk chocolate. A delightful treat for all ages.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="chocolate-card">
+                    <div class="chocolate-card-body">
+                        <h5 class="chocolate-card-title">White Chocolate</h5>
+                        <p class="chocolate-card-text">Savor the sweetness of our smooth and velvety white chocolate. A heavenly delight for those with a sweet tooth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
